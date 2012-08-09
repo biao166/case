@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>JSON Tree</title>
+<style>
+a { color:#003366; }
+a:hover { color:#060; text-decoration:underline; }
+a:active { color:#C30;  }
+.jsonTree { font: 12px/1.75 'Microsoft Yahei', Tahoma, Arial, Helvetica, STHeiti; _font-family:Tahoma,Arial,Helvetica,STHeiti; -o-font-family: Tahoma, Arial; }
+.jsonTree a { text-decoration:none; }
+.jsonTree dl { padding:0; margin:0; }
+.jsonTree dt { cursor:pointer; padding:0 3px; height:2em; line-height:2em; border-radius:5px; }
+.jsonTree dd { margin:0; }
+.jsonTree dl dd { padding-left:0.5em; border-left:1px dotted #EEE; margin-left:6px; }
+.jsonTree dl dd a { display:block; padding:3px; border-radius:5px; }
+.jsonTree dt:hover, .jsonTree dl dd a:hover { background:#D5E2FF; }
+.jsonTree-icon { margin-right:3px; display:inline-block; *display:inline; *zoom:1; width:9px; height:9px; vertical-align:middle; }
+.jsonTree-show dd { display:block; }
+.jsonTree-hide dd { display:none; }
+.jsonTree-show > dt { font-weight:bold; color:#060; }
+.jsonTree-show .jsonTree-icon { background:url(http://bbs.blueidea.com/attachment.php?aid=165232&k=d8f4eb539f2cbdb908f3d3677636265a&t=1307192054&nothumb=yes) no-repeat -9px 0; }
+.jsonTree-hide .jsonTree-icon { background:url(http://bbs.blueidea.com/attachment.php?aid=165232&k=d8f4eb539f2cbdb908f3d3677636265a&t=1307192054&nothumb=yes) no-repeat 0 0; }
+.jsonTree-number { display:inline-block; *display:inline; *zoom:1; min-width:1.5em; _width:1.5em; text-align:right; color:#CCC; }
+.jsonTree a:hover .jsonTree-name { text-decoration:underline; }
+.jsonTree a:hover .jsonTree-number { color:#666; }
+</style>
+<script>
+var jsonTree = function (wrap, obj) {
+	if (typeof wrap === 'string') wrap = document.getElementById(wrap);
+	wrap.innerHTML = jsonTree.html(obj);
+	jsonTree.event(wrap);
+	console.log(this);
+};
+
+// 生成UI
+jsonTree.html = function (obj) {
+	var html = [], i, length,
+		toString = Object.prototype.toString,
+		isArray = function (obj) {
+			return toString.call(obj) === '[object Array]';
+		};
+		
+	var each = function (obj, parent) {
+		if (isArray(obj)) {
+			length = obj.length;
+			for (i = 0; i < length; i ++) {
+				html.push('<dd><a href="');
+				html.push(obj[i]['url']);
+				html.push('"><span class="jsonTree-number">');
+				html.push(i + 1);
+				html.push('.</span> <span class="jsonTree-name">');
+				html.push(obj[i]['name']);
+				html.push('</span></a></dd>');
+			};
+		} else if (typeof obj === 'object') {
+			for (i in obj) {
+				html.push('<dd><dl class="jsonTree-hide"><dt><span class="jsonTree-icon"></span>');
+				html.push(i);
+				html.push('</dt>');
+				html.push(each(obj[i], i));
+				html.push('</dl></dd>');
+			};
+		};
+		return html;
+	};
+	
+	return '<dl class="jsonTree">' + each(obj).join('') + '</dl>';
+};
+
+// 绑定行为	
+jsonTree.event = function (wrap) {
+	wrap.onclick = function (event) {
+		event = event || window.event;
+		var link, bar,
+			target = event.target || event.srcElement,
+			parentNode = target.parentNode;
+		
+		if (target.nodeName === 'DT') bar = target;
+		if (target.nodeName === 'A') link = target;
+		if (parentNode.nodeName === 'DT') bar = parentNode;
+		if (parentNode.nodeName ===  'A') link = parentNode;
+		
+		if (bar) {
+			bar.parentNode.className = bar.parentNode.className === 'jsonTree-show' ?
+				'jsonTree-hide' :
+				'jsonTree-show';
+		} else if (link) {
+			// [code..]
+		};
+		
+		try {
+			'getSelection' in window ?
+				window.getSelection().removeAllRanges() :
+				document.selection.empty();
+		} catch (e) {};
+	};
+};
+</script>
+</head>
+
+<body>
+<h1>小巧的无限级JSON树演示</h1>
+<div id="demo" style="width:320px"></div>
+<script>
+var _data = {
+	"网络电台": [{
+		"name": "CRI 都市流行频道",
+		"url": "mms://live.cri.cn/pop"
+	}, {
+		"name": "CRI 怀旧金曲频道",
+		"url": "mms://live.cri.cn/oldies"
+	}, {
+		"name": "CRI 乡村民谣频道",
+		"url": "mms://live.cri.cn/country"
+	}, {
+		"name": "CRI 巅峰体坛网络电台",
+		"url": "mms://live.cri.cn/sports"
+	}, {
+		"name": "银河网络广播star radio",
+		"url": "mms://cdnmms.cnr.cn/cnr014"
+	}, {
+		"name": "银河网络广播news radio",
+		"url": "mms://cdnmms.cnr.cn/cnr010"
+	}, {
+		"name": "傲游之声",
+		"url": "mms://mtradio.maxthon.cn/mtradio"
+	}, {
+		"name": "QQ-欢乐派对",
+		"url": "http://qr.fm.qq.com/qqradio?qqradio"
+	}, {
+		"name": "QQ-音乐休闲",
+		"url": "http://qr.fm.qq.com/music?qqradio"
+	}, {
+		"name": "QQ-秀radio",
+		"url": "http://qr.fm.qq.com/daren?qqradio"
+	}, {
+		"name": "QQ-怀旧金曲",
+		"url": "http://live.cri.cn/oldies?qqradio"
+	}, {
+		"name": "QQ-幽默相声",
+		"url": "http://qr.fm.qq.com/humor?qqradio"
+	}, {
+		"name": "华语之声综合频道",
+		"url": "mms://122.224.147.181:7777/hy960"
+	}, {
+		"name": "华语之声新青年频道",
+		"url": "http://www.hy960xiasha.com/play/list2.asx"
+	}, {
+		"name": "城市之音(CITY FM)联播网",
+		"url": "mms://media.sdgb.cn/yinyue"
+	}, {
+		"name": "青檬网络电台",
+		"url": "mms://pub1.qmoon.net/911pop"
+	}, {
+		"name": "西湖之声网络电台",
+		"url": "mms://live.hcrt.cn/1054test"
+	}, {
+		"name": "萤火虫网络电台",
+		"url": "rtsp://www.52yhc.com/playlist/yhcradio.smil"
+	}, {
+		"name": "澳洲CVC-中文广播",
+		"url": "http://chinese64mp3.serverroom.us:7906"
+	}, {
+		"name": "澳洲CVC-中文广播(24K)",
+		"url": "http://chinese24mp3.serverroom.us:8146"
+	}, {
+		"name": "CVC-english",
+		"url": "http://www.live365.com/play/cvc_int_english"
+	}, {
+		"name": "EBC5网络电台",
+		"url": "http://www.ebc5.com/live/ebc5.asx"
+	}, {
+		"name": "YYRadio流行音乐网络电台",
+		"url": "mms://222.215.119.20:8089/radio"
+	}, {
+		"name": "灵通电台第三套节目",
+		"url": "rtsp://am100ip.am100.cn/am100/b3.rm"
+	}, {
+		"name": "灵通电台第四套节目",
+		"url": "rtsp://am100ip.am100.cn/am100/b4.rm"
+	}, {
+		"name": "灵通电台第五套节目",
+		"url": "rtsp://am100ip.am100.cn/am100/b5.rm"
+	}, {
+		"name": "J2H网络电台",
+		"url": "http://radio.sonicnet.com/playlists/rpmprof.asp?C=HIGH"
+	}, {
+		"name": "东广音乐FM1978",
+		"url": "mms://fm1978.com/radio"
+	}, {
+		"name": "巧巧网络电台",
+		"url": "mms://218.66.104.104/radio2/audio"
+	}, {
+		"name": "华声公益网络电台",
+		"url": "mms://radio.hsgy.org/live1"
+	}, {
+		"name": "广东青少年网络电台",
+		"url": "mms://live.teamnet.cc/live"
+	}, {
+		"name": "一听音乐网络电台",
+		"url": "mms://online-radio.1ting.com/music"
+	}, {
+		"name": "中国音乐网络电台",
+		"url": "mms://www.591radio.com/radio"
+	}, {
+		"name": "绿城网络电台",
+		"url": "mms://radio.nn.gx.cn/voice"
+	}, {
+		"name": "摩力游电台",
+		"url": "mms://203.156.255.24:5556/moliyo"
+	}, {
+		"name": "一加一网络广播",
+		"url": "http://www.yijiayi.org/opotemp/opolive.asx"
+	}, {
+		"name": "海底城堡网络电台",
+		"url": "mms://radio.mx8087.cn/tingmx"
+	}, {
+		"name": "神秘岛网络电台",
+		"url": "http://www.jinlaima.com:8000"
+	}, {
+		"name": "Oporadio",
+		"url": "http://www.yijiayi.org/opotemp/opolive.asx"
+	}],
+	"推荐电台": [{
+		"name": "CRI 怀旧金曲频道",
+		"url": "mms://live.cri.cn/oldies"
+	}, {
+		"name": "CRI 都市流行频道",
+		"url": "mms://live.cri.cn/pop"
+	}, {
+		"name": "上海动感101",
+		"url": "mms://diantai.smgbb.cn/dg101"
+	}, {
+		"name": "广东电台音乐之声",
+		"url": "mms://live.rgd.com.cn/993"
+	}, {
+		"name": "佛山电台真爱频道",
+		"url": "mms://59.38.110.93/fm946"
+	}, {
+		"name": "香港电台第二台",
+		"url": "mms://202.177.192.111/radio2"
+	}, {
+		"name": "无锡电台音乐频率",
+		"url": "mms://vs1.thmz.com/radio31"
+	}, {
+		"name": "山东广播音乐频道",
+		"url": "http://60.216.51.155:8001/channel6"
+	}, {
+		"name": "福建音乐广播",
+		"url": "mms://video.fjtv.net/yygb?ZHVob25n"
+	}, {
+		"name": "银河流行音乐台",
+		"url": "mms://media.iwant-in.net/pop"
+	}, {
+		"name": "湖南电台文艺频道",
+		"url": "mms://202.103.67.185/文艺"
+	}, {
+		"name": "Radio Love Live (32k)",
+		"url": "http://service.radiostreamlive.com/channel/radiolovelive/feed/windowsmedia.asx"
+	}, {
+		"name": "Classical Minnesota Public Radio (64k)",
+		"url": "http://minnesota.publicradio.org/tools/play/streams/classical.asx"
+	}, {
+		"name": "Whisperings: Solo Piano Radio (64k)",
+
+		"url": "http://www.solopianoradio.com/free/pianosolo64wma.asx"
+	}, {
+		"name": "ORS Radio -- Latin instrumental classical (128k)",
+		"url": "http://www.orsradio.com/bluefm.asx"
+	}, {
+		"name": "东方都市 （FM89.9 AM792）",
+		"url": "mms://diantai.smgbb.cn/ds792"
+	}],
+	"国外": {
+		"华语广播": [{
+			"name": "美国之音(VOA) 中文",
+			"url": "rtsp://a1641.l211023640.c2110.g.lr.akamaistream.net:554/live/D/1641/2110/v0001/reflector:23640"
+		}, {
+			"name": "BBC 中文广播",
+			"url": "mms://livewmstream-ws.bbc.co.uk.edgestreams.net/reflector:38962"
+		}, {
+			"name": "BBNRadio 中文台",
+			"url": "http://www.bbnradio.org/wcm4/schinese/chineseaudio2.asx"
+		}, {
+			"name": "动力883Jia FM华语电台",
+			"url": "http://streaming.clickhere2.com/883jia.asx"
+		}, {
+			"name": "温哥华AM1470（粤语）",
+			"url": "http://www.am1470.com/liveam.asx"
+		}, {
+			"name": "新西兰BBC 时事一周(粤)",
+			"url": "http://www.bbc.co.uk/cantonese/ram/newsweek.ram"
+		}, {
+			"name": "KMRB AM1430 华语广播电台",
+			"url": "mms://38.96.148.89/kmrb"
+		}, {
+			"name": "KAZN  AM1300 华语广播电台",
+			"url": "mms://38.96.148.89/kazn"
+		}, {
+			"name": "KCHN  AM1050 华语广播电台",
+			"url": "mms://barryp.serverroom.us/barryp"
+		}, {
+			"name": "KDFT  AM540 华语广播电台",
+			"url": "http://kdft.serverroom.us/KDFT"
+		}, {
+			"name": "WKDM  AM1380 华语广播电台",
+			"url": "mms://38.96.148.29/wkdm"
+		}, {
+			"name": "WNSW  AM1430 华语广播电台",
+			"url": "mms://38.96.148.29/wnsw"
+		}, {
+			"name": "WNTD  AM950 华语广播电台",
+			"url": "mms://65.123.67.235:8080/"
+		}, {
+			"name": "WZRC  AM1480 华语广播电台",
+			"url": "mms://38.96.148.29/wzrc"
+		}, {
+			"name": "RFI Chinese 06:00-07:30",
+			"url": "http://fifm.cn/live/1647.asx"
+		}, {
+			"name": "RFI Chinese 07:00-08:00",
+			"url": "http://fifm.cn/live/1649.asx"
+		}, {
+			"name": "RFI Chinese 17:30-18:30",
+			"url": "http://fifm.cn/live/1669.asx"
+		}, {
+			"name": "KBS韩国国际广播电台",
+			"url": "http://rki.kbs.co.kr/src/asx/L_RKI.asx"
+		}, {
+			"name": "德国之声晨间节目",
+			"url": "mms://c13010-oa.w.core.cdn.streamfarm.net/dwworldondemand1/encoder/audio/mitschnitt/Kanal5-chi-abe.wmv"
+		}, {
+			"name": "德国之声晚间第一次节目",
+			"url": "mms://c13010-oa.w.core.cdn.streamfarm.net/dwworldondemand1/encoder/audio/mitschnitt/Kanal2-chi-fru.wmv"
+		}, {
+			"name": "德国之声晚间第二次节目",
+			"url": "mms://c13010-oa.w.core.cdn.streamfarm.net/dwworldondemand1/encoder/audio/mitschnitt/Kanal2-chi-nac.wmv"
+		}, {
+			"name": "洛城双语广播电台KWRM AM1370",
+			"url": "http://www.am1370-chinese.com/2001/radio_pg10/asx/1370AMRadio.asx"
+		}, {
+			"name": "纽约中华商台广播",
+			"url": "mms://nick11f.surfernetwork.com/cwcb"
+		}, {
+			"name": "澳洲CVC-中文广播",
+			"url": "http://chinese64mp3.serverroom.us:7906"
+		}],
+		"美国": {
+			"华语": [{
+				"name": "BBNRadio 中文台",
+				"url": "http://www.bbnradio.org/wcm4/schinese/chineseaudio2.asx"
+			}, {
+				"name": "KMRB AM1430 华语广播电台",
+				"url": "mms://38.96.148.89/kmrb"
+			}, {
+				"name": "KAZN  AM1300 华语广播电台",
+				"url": "mms://38.96.148.89/kazn"
+			}, {
+				"name": "KCHN  AM1050 华语广播电台",
+				"url": "mms://barryp.serverroom.us/barryp"
+			}, {
+				"name": "KDFT  AM540 华语广播电台",
+				"url": "http://kdft.serverroom.us/KDFT"
+			}, {
+				"name": "WKDM  AM1380 华语广播电台",
+				"url": "mms://38.96.148.29/wkdm"
+			}, {
+				"name": "WNSW  AM1430 华语广播电台",
+				"url": "mms://38.96.148.29/wnsw"
+			}, {
+				"name": "WNTD  AM950 华语广播电台",
+				"url": "mms://65.123.67.235:8080/"
+			}, {
+				"name": "WZRC  AM1480 华语广播电台",
+				"url": "mms://38.96.148.29/wzrc"
+			}, {
+				"name": "洛城双语广播电台KWRM AM1370",
+				"url": "http://www.am1370-chinese.com/2001/radio_pg10/asx/1370AMRadio.asx"
+			}, {
+				"name": "美国之音(VOA) 中文",
+				"url": "rtsp://a1641.l211023640.c2110.g.lr.akamaistream.net:554/live/D/1641/2110/v0001/reflector:23640"
+			}, {
+				"name": "纽约中华商台广播",
+				"url": "mms://nick11f.surfernetwork.com/cwcb"
+			}, {
+				"name": "纽约公共广播(NYPR)",
+				"url": "http://205.234.168.46:80/wnycam?MSWMExt=.asf"
+			}],
+			"精选": [{
+				"name": "CNN News",
+				"url": "mms://wmscnn.stream.aol.com/live%5Ccnn%5Ccnn_radio"
+			}, {
+				"name": "CNN Radio",
+				"url": "http://www.cnn.com/audio/radio/liveaudio.asx"
+			}, {
+				"name": "Family Life Ministries Network",
+				"url": "http://www.christiannetcast.com/listen/dynamicasx.asp?station=fln-32"
+			}, {
+				"name": "IPR  News Radio 91.5 FM",
+				"url": "mms://pubint-wica.wm.llnwd.net/pubint_wica"
+			}, {
+				"name": "IPR Music Radio 88.7&100.9 FM Classical",
+				"url": "mms://pubint-wiaa.wm.llnwd.net/pubint_wiaa"
+			}, {
+				"name": "NPR Naional Public Radio",
+				"url": "http://scfire-dll-aa04.stream.aol.com:80/stream/1062"
+			}, {
+				"name": "Research Channel",
+				"url": "mms://media-wm.cac.washington.edu/ResearchTV Live (LAN)"
+			}, {
+				"name": "VOA News Now",
+				"url": "rtsp://a247.r.akareal.net/live/D/247/2110/v001/reflector:48984"
+			}, {
+				"name": "VOA Talk To America",
+				"url": "rtsp://a399.l211048984.c2110.g.lr.akamaistream.net/live/D/399/2110/v0001/reflector:48984"
+			}]
+		}
+	}
+};
+
+jsonTree('demo', _data);
+</script>
+</body>
+</html>

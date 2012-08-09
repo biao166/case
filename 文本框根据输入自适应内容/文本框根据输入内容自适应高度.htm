@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>文本框根据输入内容自适应高度</title>
+<style type="text/css">
+#textarea { font: 1.4em/1.8em Arial; overflow: hidden; width: 550px; height: 6em; padding:10px; }
+</style>
+<script src="autoTextarea.js"></script>
+</head>
+<body style="background:#FBFCFD url(http://goo.gl/kLsZX);">
+<textarea id="textarea"></textarea>
+<script>
+var text = document.getElementById("textarea"),
+	tip = '想写点什么..';
+	
+autoTextarea(text);// 调用
+
+text.value = tip;
+
+text.onfocus = function () {
+	if (text.value === tip) text.value = '';
+};
+text.onblur = function () {
+	if (text.value === '') text.value = tip;
+};
+</script>
+</body>
+</html>

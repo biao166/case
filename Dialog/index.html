@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>luPopup</title>
+	<link rel="stylesheet" href="css/dialog.css">
+</head>
+<body>
+	<div style="text-align: center; padding: 30px 0; height: 1500px;">
+		<p>
+			<a href="#" id="luPopupTrigger" style="font-weight: bold; font-size: 18px;">Show Popup</a>
+		</p>
+		<p>
+			<a href="#" id="another" style="font-weight: bold; font-size: 18px;">Show Another Popup</a>
+		</p>
+		<p id="pos" style="padding: 10px 0;"></p>
+	</div>
+
+	<script type="text/javascript" src="js/dialog.js"></script>
+	<script type="text/javascript">
+		var trigger = document.getElementById('luPopupTrigger');
+		var another = document.getElementById('another');
+		trigger.onclick = function () {
+			Dialog.open('put the title here', 'put content here');
+		};
+		another.onclick = function () {
+			Dialog.open('other title', 'other content<hr />');
+		};
+
+
+		document.documentElement.onmousemove = function (event) {
+			event = event || window.event;
+			var scroll = {
+				x: 0,
+				y: 0
+			};
+			scroll.x = document.documentElement.scrollLeft || document.body.scrollLeft;
+			scroll.y = document.documentElement.scrollTop || document.body.scrollTop;
+
+			document.getElementById('pos').innerHTML = 'x: ' + (scroll.x + event.clientX) + '; y: ' + (scroll.y + event.clientY);
+		};
+	</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+body, ul, li, h1, h2, h3, h4, input, button, textarea, select, p, dl, dd, dt {
+	margin: 0;
+	padding: 0;
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+	font-size: 100%;
+}
+ul, li {
+	list-style: none;
+}
+img {
+	border: 0;
+	vertical-align: middle;
+}
+a {
+	color: #333;
+	cursor: pointer;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+body {
+	font: 12px/1.5 "lucida grande",tahoma,verdana,arial,sans-serif;
+	color: #333;
+}
+input, button, textarea {
+	font: 12px/1.5 "lucida grande",tahoma,verdana,arial,sans-serif;
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
+}
+
+#dialogShadow {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.8;
+	-moz-opacity: 0.8;
+	filter:alpha(opacity=80);
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	display: none;
+	cursor: pointer;
+}
+/*IE6 fixed*/
+* html { 
+	background:url(*) fixed; 
+}
+* html body { 
+	height:100%; 
+}
+* html #dialogShadow { 
+	position: absolute; 
+	left: expression(documentElement.scrollLeft + documentElement.clientWidth - this.offsetWidth); 
+	top: expression(documentElement.scrollTop + documentElement.clientHeight - this.offsetHeight); 
+}
+#dialog {
+	border: 10px solid rgba(117, 109, 84, 0.8);
+	border: 10px solid #1D1C18\0; /* for ie8, 9 */
+	*border: 10px solid #1D1C18; /* for ie6, 7 */
+	border-radius: 8px;
+	width: 500px;
+	position: absolute;
+	z-index: 105;
+	display: none;
+}
+#dialog .hd {
+	border: 1px solid #3B5998;
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	background: #6D84B4;
+	padding: 0 10px;
+	overflow: hidden;
+	position: relative;
+	cursor: move;
+}
+#dialog .hd h3 {
+	font-weight: bold;
+}
+#dialog .hd a {
+	display: block;
+	position: absolute;
+	text-indent: -999em;
+	top: 7px;
+	right: 10px;
+	width: 15px;
+	height: 15px;
+	overflow: hidden;
+	background: url(../images/icons.png) no-repeat;
+}
+#dialog .hd a:hover {
+	background-position: 0 -15px;
+}
+#dialog .bd {
+	padding: 10px;
+	border: 1px solid #555555;
+	border-top: none;
+	background: #fff;
+}
+#dialog .ft {
+	background: #fff;
+	padding: 10px;
+	border: 1px solid #6B6A6A;
+	border-top: none;
+	text-align: right;
+}
+#dialog .ft a {
+	display: inline-block;
+	padding: 3px 10px 5px;
+	background: url(../images/bgs.png) no-repeat;
+	font-weight: bold;
+}
+#dialog .ft a.sure {
+	border: 1px solid #29447E;
+	background-position: 0 -49px;
+	color: #fff;
+}
+#dialog .ft a.sure:hover {
+	background-position: 0 -55px;
+}
+#dialog .ft a.cancel {
+	border: 1px solid #999999;
+	background-position: 0 -148px;
+	color: #333;
+}
+#dialog .ft a.cancel:hover {
+	background-position: 0 0;
+}

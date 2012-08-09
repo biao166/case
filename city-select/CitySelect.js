@@ -672,12 +672,21 @@ CitySelect.prototype = {
 	bind: function() {
 		var self = this;
 		this.p.change(function() {
-			self.showTown($(this).val());
+			if($(this).val()){
+				self.showTown($(this).val());
+			}else{
+				self.t.html("<option value=''>--</option>");
+				if(self.level === 3){
+					self.c.html("<option value=''>--</option>");
+				}
+			}
 		});
 		if(this.level !== 3){return;}
 		this.t.change(function() {
 			if (self.p.val() && $(this).val()) {
 				self.showCity(self.p.val(), $(this).val());
+			}else{
+				self.c.html("<option value=''>--</option>");
 			}
 		});
 	},
