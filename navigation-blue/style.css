@@ -1,0 +1,57 @@
+/* reset */
+html{color:#000;background:#fff;}	
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0;}
+body,button,input,select,textarea{font:12px/1.5 tahoma,arial,\5b8b\4f53;}
+input,select,textarea{font-size:100%;}
+table{border-collapse:collapse;border-spacing:0;}
+th{text-align:inherit;}
+fieldset,img,a img{border:0;}
+abbr,acronym{border:0;font-variant:normal;}
+del{text-decoration:line-through;}
+address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500;}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500;}
+q:before,q:after{content:'';}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+a:hover{text-decoration:underline;}
+ins,a{text-decoration:none;}
+cl:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+cl{zoom:1;}
+.z{float:left;}
+.y{float:right;}
+
+
+/* font */
+a{ color: #1982d1; }
+.f14{ font-size: 14px; }
+.f16{ font-size: 16px; }
+.xw1{ font-weight: 700; }
+
+/* layout */
+.wp{ width: 900px; margin: 0 auto; }
+/* hd */
+#hd{ height: 64px; width: 100%; background:#3F475C url("images/sharkskin.gif") repeat-x 0 0; }
+	#hdbox{ position : relative; }
+		#logo{ }
+			#logo a{ color: #EFEFEF; line-height: 64px; }
+				#logo sub{ margin-left: 12px; }
+		#nav{ position: absolute; left: 200px; top: 28px; }
+			#nav li{ float: left; }
+			#nav a{ display: block; padding: 0 12px; color: #BBBFC3; line-height: 1.625em; }
+				#nav li.a{ background: url("images/nav-shadow.png") repeat-x 0 0 #000000; border-radius: 6px; }
+/* ct */
+#ct{ background: #F1F1F1; }
+	#mn, #sd{}
+	#mn{ float: left; width: 600px; height: 400px; }
+		.dhbox{ padding: 8px 15px; }
+		.dh_h{ }
+		.dh_c{ }
+		
+	#sd{ float: right; width: 200px; }
+		#sdnav{ margin-top: 30px; background: #EEEEEE; padding: 10px 20px; }
+			#sdnav li{ line-height: 24px; }
+
+/* ft */
+$ft{}

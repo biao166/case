@@ -1,0 +1,40 @@
+/**
+ * name: More email login 
+ * author: biao166@gmail.com 2012-01-13
+ */
+
+/* form */
+label, button { cursor: pointer; }
+.box_input, .box_select, .pn{ display:inline-block; _display:inline; zoom:1; vertical-align:middle; border:1px solid #A1BCD1; }	
+
+.box_input{ margin-right:2px; height:20px; background:#fff;border-color:#A1BCD1; overflow:hidden;}
+.box_input input{ background:none; border:1px solid #E9E9E9; border-bottom: none; width:88px; height:19px;line-height:18px; font-family:arial; vertical-align:top; *margin-top:-1px; padding-left:1px; color: #444444; }
+
+.pr, .pc { vertical-align: middle; margin: 0 5px 1px 0; padding: 0; }
+	.ie6 .pr, .ie6 .pc, .ie7 .pr, .ie7 .pc { margin-right: 2px; }
+.box_select, .pn{ background:#F1F1F4 url(images/s.png) repeat-x 0 0; }
+
+.box_select{ font-family:Tahoma; margin-left:-10px; height:20px; line-height:20px; margin-right:5px; cursor:pointer; }
+.box_select span{ float:left; width:88px; height:20px; padding-left:3px; background:url(images/s.png) no-repeat right -25px; line-height:18px; overflow:hidden;}
+.ie_all .box_select span{ line-height: 22px; }
+
+.pn span, .pn strong{ padding: 0 6px; }
+	.ie_all .pn em, .ie_all .pn span, .ie_all .pn strong{ line-height: 20px; }
+	.ie7 .pn em, .ie7 .pn span, .ie7 .pn strong { line-height: 18px; }
+	.ie6 .pn { overflow-x: visible; width: 0; }
+
+/* mail */
+.box-mail{font-size:12px;color:#666;width:190px; margin: 40px auto;}
+	.box-mail ul{margin-top:15px;}
+	.box-mail li{margin-top:10px;}
+	.box-mail_input_passwd { width:131px; }
+	.box-mail_input_passwd input { width:129px; }
+	.box-mail_select_click{ background:#DDDDDD; }
+	
+	.box-mail_layer{ z-index:99; font-size:12px; line-height:18px; vertical-align:baseline; cursor:default; border:1px solid #A1BCD1; background:#fff; width:91px;position:absolute; overflow:hidden; }
+		.box-mail_layer li{ padding-left:3px; }
+		.box-mail_layer .hover{ background:#E2EAFF;cursor:pointer }
+		.box-mail_layer .no{ color:#999; }
+		.box-mail_layer a{ display:block; color:#1C1C1C; zoom:1; }
+		.box-mail_layer a:hover{ text-decoration:none; }
+	.box-mail_select_click{ background: none repeat scroll 0 0 #DDDDDD !important; }

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="base.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>多邮箱登录（仿hao123）</title>
+</head>
+<body>
+	<div class="box-mail">
+		<form action="" method="post" id="mailForm" target=_blank>
+			<ul>
+				<li>
+					<span class="box_input">
+						<input autocomplete="off" id="mailUserName">
+					</span>
+					<span class="box_select">
+						<span id="mailSelect"></span>
+					</span>
+				</li>
+				<li>
+					<span class="box_input box-mail_input_passwd">
+						<input type="password" id="mailPassWord">
+					</span>
+					<span style="display:none" id="mailParas"></span>
+					<button class="pn" type="submit" hidefocus="true"><span>登录</span></button>
+				</li>
+			</ul>	
+		</form>
+	</div>
+	<script type="text/javascript" src="js.js"></script>
+</body>
+</html>

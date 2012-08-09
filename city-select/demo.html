@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+</head>
+<body>
+	<div id="box1"></div>
+	<div id="box2"></div>
+	<!--
+		<select id="province" name="province" onchange="selecttown()"></select>
+		<select id="town" name="town" onchange="selectcity()"></select>
+		<select id="city" name="city"></select>
+	-->
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="CitySelect.js"></script>
+	<script type="text/javascript">
+		var city1 = new CitySelect({container: $("#box1")})
+		var city2 = new CitySelect({container: $("#box2"), level: 2})
+		console.log(city1, city2);
+	</script>
+</body>
+</html>
