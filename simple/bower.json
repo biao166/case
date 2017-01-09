@@ -1,0 +1,16 @@
+{
+  "name": "lb-simple",
+  "version": "0.0.2",
+  "homepage": "https://github.com/biao166/simple",
+  "authors": [
+    "biao166"
+  ],
+  "description": "simple mv**",
+  "main": "simple.js",
+  "keywords": [
+    "mvc"
+  ],
+  "ignore": [],
+  "license": "MIT",
+  "private": true
+}

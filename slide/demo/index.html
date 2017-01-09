@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="style.css">
+    <script src="../slide.js"></script>
+</head>
+<body>
+<div id="top_gallery" class="top_gallery">
+    <ul class="gallery_nav" >
+        <li class="panel current">
+            <a href="javascript:void(0)"><img alt="彭丽媛:习近平主席和我欢迎大家来做客" src="http://newsfs.keke.cn/userfiles/newsimg/news_images/20141109/7a/img_b_35ec3f9014064214db97d5668a6ff07a.jpg"><p class="title ng-binding">彭丽媛:习近平主席和我欢迎大家来做客</p></a>
+        </li>
+        <li class="panel">
+            <a href="javascript:void(0)"><img alt="日本首相安倍晋三携夫人抵达北京" src="http://newsfs.keke.cn/userfiles/newsimg/news_images/20141109/7c/img_b_7578be771dd5870c10809fb58050587c.jpg">
+            <p class="title">日本首相安倍晋三携夫人抵达北京</p></a>
+        </li>
+        <li class="panel">
+            <a href="javascript:void(0)"><img alt="四川广元多名美女集体向刑警男友求婚" src="http://newsfs.keke.cn/userfiles/newsimg/news_images/20141109/40/img_b_1a178d5229535725b13c566a3ded0340.jpg"><p class="title ng-binding">四川广元多名美女集体向刑警男友求婚</p></a>
+        </li>
+        <li class="panel">
+            <a href="javascript:void(0)"><img alt="奶奶，我还没说完呢" src="http://newsfs.keke.cn/userfiles/newsimg/news_images/20141109/ff/img_b_c680d034fb07355d55ca325ba974feff.jpg"><p class="title ng-binding">奶奶，我还没说完呢</p></a>
+        </li>
+        <li class="panel">
+            <a href="javascript:void(0)">
+                <img alt="舌尖上的APEC：烤鸭和宫保鸡丁是外宾最爱" src="http://newsfs.keke.cn/userfiles/newsimg/news_images/20141109/5b/img_b_0457f81121f1e51aa222966387637d5b.jpg">
+                <p class="title ng-binding">舌尖上的APEC：烤鸭和宫保鸡丁是外宾最爱</p>
+            </a>
+        </li>
+    </ul>
+    <ul class="gallery_dot">
+        <li class="current"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script>
+    new Slide({
+        autoPlay: true,
+        duration: 300,
+        targetSelector: '#top_gallery',
+        wrapSelector: '.gallery_nav',
+        indicatorSelector: '#top_gallery .gallery_dot > li',
+        indicatorCls: 'current'
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "lb-slide",
+  "version": "0.0.2",
+  "authors": [
+    "biao166 <biao166@gmail.com>"
+  ],
+  "description": "slide",
+  "main": "slide.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "slide"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.libiao.name"
+}
